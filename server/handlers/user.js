@@ -1,6 +1,5 @@
 require("dotenv").load;
 const db = require("../models");
-const jwt = require("jsonwebtoken");
 const { signToken, decodeToken } = require("../lib/common_util");
 
 exports.UserRegister = async (req, res, next) => {
