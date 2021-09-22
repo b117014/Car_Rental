@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userGetAction } from "./_redux/action/user";
 import LoginView from "./view/LoginView/LoginView";
+import RegisterView from "./view/RegisterView/RegisterView";
 
 const RouterContent = (props) => {
   const dispatch = useDispatch();
@@ -17,9 +18,9 @@ const RouterContent = (props) => {
   return (
     <Router>
       <Switch>
-        {/* <Route exact path="/" component={Homepage} />
+        {/* <Route exact path="/" component={Homepage} /> */}
 
-        <Route exact path="/register" component={RegisterPage} /> */}
+        <Route exact path="/register" component={RegisterView} />
         <Route exact path="/login" component={LoginView} />
       </Switch>
     </Router>
