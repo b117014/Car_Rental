@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { USER_LOGOUT } from "../action/type";
+import { USER_LOGOUT } from "../action/user/type";
 import { userReducer } from "./user";
 
 

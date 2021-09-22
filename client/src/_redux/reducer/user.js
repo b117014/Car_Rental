@@ -4,7 +4,7 @@ import {
   USER_GET_PENDING,
   USER_LOGIN_PENDING,
   USER_ERROR,
-} from "../action/type";
+} from "../action/user/type";
 
 const DEFAULT_STATE = {
   user: null,
