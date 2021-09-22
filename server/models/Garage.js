@@ -16,6 +16,22 @@ const garageSchema = new mongoose.Schema({
   address: {
     type: String,
   },
+  total_slot: {
+    type: Number,
+    default: 9,
+  },
+  vehicle: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vehicle",
+    },
+  ],
+  slot: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Slot",
+    },
+  ],
 });
 garageSchema.index({ location: "2dsphere" });
 
