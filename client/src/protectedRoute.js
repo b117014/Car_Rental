@@ -27,7 +27,7 @@ const ProtectedRoute = ({ accessType, type }) => {
   } else {
     
 
-    return <PageSpinner />;
+    return <div></div>;
   }
 };
 

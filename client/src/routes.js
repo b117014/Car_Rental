@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ProtectedRoute from "./protectedRoute";
-import { routeType } from "../constant/route_constant";
+
 import { useDispatch } from "react-redux";
 import { userGetAction } from "./_redux/action/user";
+import LoginView from "./view/LoginView/LoginView";
 
 const RouterContent = (props) => {
   const dispatch = useDispatch();
@@ -17,10 +17,10 @@ const RouterContent = (props) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        {/* <Route exact path="/" component={Homepage} />
 
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/register" component={RegisterPage} /> */}
+        <Route exact path="/login" component={LoginView} />
       </Switch>
     </Router>
   );
