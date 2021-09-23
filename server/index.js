@@ -5,10 +5,15 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   app = express();
 
+const userRoutes = require("./routes/user");
+const garageRoute = require("./routes/garage");
+const errorHandler = require("./handlers/error");
 
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
+
+app.use("/api", userRoutes, garageRoute);
 
 app.use(function (req, res, next) {
   let err = new Error("not found");

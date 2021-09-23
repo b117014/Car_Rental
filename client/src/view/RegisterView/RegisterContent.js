@@ -1,10 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
 
-const RegisterContent = () => {
+const RegisterContent = ({ onUserRegister }) => {
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
-    onSubmit: (val) => console.log(val),
+    initialValues: { email: "", password: "", name: "" },
+    onSubmit: (val) => {
+      onUserRegister(val);
+      console.log(val);
+    },
   });
 
   return (
@@ -13,19 +16,33 @@ const RegisterContent = () => {
         <section className="wrapper card shadow">
           <div className="heading">
             <div className="text-center">
-            <h1 className="text text-large">Register</h1>
-            <p className="text text-normal">
-              Already have account
-              <span>
-                <a href="/register" className="text text-links mx-2">
-                  login
-                </a>
-              </span>
-            </p>
+              <h1 className="text text-large">Register</h1>
+              <p className="text text-normal">
+                Already have account
+                <span>
+                  <a href="/login" className="text text-links mx-2">
+                    login
+                  </a>
+                </span>
+              </p>
             </div>
-            
           </div>
           <form name="login" className="form" onSubmit={formik.handleSubmit}>
+            <div className="input-control">
+              <label for="name" className="input-label" hidden>
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                className="input-field"
+                placeholder="Name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+                required
+              />
+            </div>
             <div className="input-control">
               <label for="email" className="input-label" hidden>
                 Email Address
@@ -37,6 +54,7 @@ const RegisterContent = () => {
                 placeholder="Email Address"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.email}
                 required
               />
             </div>
@@ -51,6 +69,7 @@ const RegisterContent = () => {
                 placeholder="Password"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.password}
                 required
               />
             </div>

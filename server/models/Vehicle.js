@@ -18,6 +18,15 @@ const vehicleSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    reserved: [
+      {
+        from: String,
+        to: String,
+      },
+    ],
+    is_available: {
+      type: Boolean,
+    },
   },
   {
     timestamps: true,
