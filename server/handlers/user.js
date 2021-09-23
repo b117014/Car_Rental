@@ -5,6 +5,7 @@ const { signToken, decodeToken } = require("../lib/common_util");
 exports.UserRegister = async (req, res, next) => {
   try {
     const { body } = req;
+    console.log(body);
     let user = await db.User.create(body);
     let token = await signToken(user);
     user.token = token;
