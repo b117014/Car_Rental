@@ -1,21 +1,9 @@
 import React from "react";
 import GarageCard from "./GarageCard";
+import { useSelector } from "react-redux";
 
-const data = [
-  {
-    name: "Garage 1",
-    city: "Pune",
-  },
-  {
-    name: "Garage 2",
-    city: "Pune",
-  },
-  {
-    name: "Garage 3",
-    city: "Pune",
-  },
-];
 const GarageContent = () => {
+  const data = useSelector((state) => state.garage.garages);
   return (
     <div className="">
       <div className="p-4">

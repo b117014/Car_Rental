@@ -29,16 +29,17 @@ const RegisterContent = ({ onUserRegister }) => {
           </div>
           <form name="login" className="form" onSubmit={formik.handleSubmit}>
             <div className="input-control">
-              <label for="email" className="input-label" hidden>
+              <label for="name" className="input-label" hidden>
                 Name
               </label>
               <input
-                type="email"
-                name="email"
+                type="text"
+                name="name"
                 className="input-field"
                 placeholder="Name"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.name}
                 required
               />
             </div>
@@ -53,6 +54,7 @@ const RegisterContent = ({ onUserRegister }) => {
                 placeholder="Email Address"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.email}
                 required
               />
             </div>
@@ -67,6 +69,7 @@ const RegisterContent = ({ onUserRegister }) => {
                 placeholder="Password"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.password}
                 required
               />
             </div>
