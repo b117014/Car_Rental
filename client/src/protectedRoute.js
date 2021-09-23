@@ -38,12 +38,7 @@ const ProtectedRoute = ({ accessType, type }) => {
                     <i class="fad fa-share-alt mr-1"></i> Logout
                   </button>
                 </div>
-                <div className="">
-                  <i class="fa fa-bookmark" aria-hidden="true"></i>
-                </div>
-                <div className="">
-                  <i class="fa fa-bell" aria-hidden="true"></i>
-                </div>
+
                 <div className="">
                   <div className="">
                     <img

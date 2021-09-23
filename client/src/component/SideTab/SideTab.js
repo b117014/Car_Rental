@@ -32,7 +32,7 @@ const SideTab = () => {
               className="my-4 cursor-pointer white-col"
               onClick={onChangeGarageRoute}
             >
-              <i class="fas fa-handshake-alt d-inline white-col"></i>
+              <i class="fas fa-garage-car"></i>
               <p className="mx-3 d-inline white-col">Garage</p>
             </div>
 

@@ -15,7 +15,7 @@ const GarageContainer = () => {
   };
   const onChangeGarageDetailRoute = (garageId) => {
     let url = garageDetailRoute(true, garageId);
-    window.open(url, "_blank");
+    history.push(url);
   };
   useEffect(() => {
     onGaragesGet();
