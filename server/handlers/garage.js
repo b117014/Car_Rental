@@ -42,20 +42,25 @@ exports.createGarage = async (req, res, next) => {
 exports.getGarageSlot = async (req, res, next) => {
   try {
     let user = await decodeToken(req);
-    let { body } = req;
+    let { query, params } = req;
+    console.log(query, params);
     if (user) {
       const vehicle = await db.Vehicle.find({
-        garage: body.garageId,
-        reserved: {
-          $not: {
-            $elemMatch: {
-              from: { $lt: req.body.to.substring(0, 10) },
-              to: { $gt: req.body.from.substring(0, 10) },
+        $and: [
+          { garage: params.garageId },
+          {
+            reserved: {
+              $not: {
+                $elemMatch: {
+                  from: { $lt: query.start_date },
+                  to: { $gt: query.end_date },
+                },
+              },
             },
           },
-        },
+        ],
       });
-
+      console.log(vehicle);
       res.send(vehicle);
     } else {
       return next({
@@ -64,6 +69,7 @@ exports.getGarageSlot = async (req, res, next) => {
       });
     }
   } catch (err) {
+    console.log(err);
     return next({
       message: err.message || "Something went wrong",
     });

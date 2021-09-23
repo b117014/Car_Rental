@@ -41,6 +41,7 @@ const decodeToken = async (req) => {
     const decodedData = await verifyTokenFromHeader(req);
     return decodedData;
   } catch (err) {
+    console.log(err);
     if (err.name === "TokenExpiredError") {
       throw new Error("TokenExpiredError");
     }

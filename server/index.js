@@ -7,13 +7,14 @@ const express = require("express"),
 
 const userRoutes = require("./routes/user");
 const garageRoute = require("./routes/garage");
+const vehicleRoute = require("./routes/vehicle");
 const errorHandler = require("./handlers/error");
 
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 
-app.use("/api", userRoutes, garageRoute);
+app.use("/api", userRoutes, garageRoute, vehicleRoute);
 
 app.use(function (req, res, next) {
   let err = new Error("not found");
