@@ -7,6 +7,7 @@ const express = require("express"),
 
 const userRoutes = require("./routes/user");
 const garageRoute = require("./routes/garage");
+const errorHandler = require("./handlers/error");
 
 app.use(cors());
 app.use(morgan("tiny"));

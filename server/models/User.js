@@ -16,11 +16,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-
+    token:{
+      type: String,
+    },
     is_active: {
       type: Boolean,
       default: false,
     },
+    
   },
   {
     timestamps: true,
