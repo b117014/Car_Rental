@@ -26,12 +26,6 @@ const garageSchema = new mongoose.Schema({
       ref: "Vehicle",
     },
   ],
-  slot: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Slot",
-    },
-  ],
 });
 garageSchema.index({ location: "2dsphere" });
 
