@@ -2,6 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import SideTab from "./component/SideTab/SideTab";
+import { routeType } from "./constant/route_constant";
+import GarageView from "./view/GarageView/GarageView";
+import GarageDetailView from "./view/GarageDetailView/GarageDetailView";
 
 const ProtectedRoute = ({ accessType, type }) => {
   const history = useHistory();
@@ -10,6 +13,12 @@ const ProtectedRoute = ({ accessType, type }) => {
   const isUserGetPending = useSelector((state) => state.user.isUserGetPending);
   const onRenderComponent = (type) => {
     switch (type) {
+      case routeType.GARAGE_LIST_VIEW:
+        return <GarageView />;
+      case routeType.GARAGE_VIEW:
+        return <GarageDetailView />;
+      default:
+        return <></>;
     }
   };
   if (isAuthenticated && user) {
