@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { userGetAction } from "./_redux/action/user";
 import LoginView from "./view/LoginView/LoginView";
 import RegisterView from "./view/RegisterView/RegisterView";
+import { garagesRoute } from "./route";
+import GarageView from "./view/GarageView/GarageView";
 
 const RouterContent = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ const RouterContent = (props) => {
 
         <Route exact path="/register" component={RegisterView} />
         <Route exact path="/login" component={LoginView} />
+        <Route exact path={garagesRoute()} component={GarageView} />
       </Switch>
     </Router>
   );
