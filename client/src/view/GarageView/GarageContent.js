@@ -2,7 +2,7 @@ import React from "react";
 import GarageCard from "./GarageCard";
 import { useSelector } from "react-redux";
 
-const GarageContent = () => {
+const GarageContent = ({ onChangeGarageDetailRoute }) => {
   const data = useSelector((state) => state.garage.garages);
   return (
     <div className="">
@@ -11,7 +11,10 @@ const GarageContent = () => {
           {data &&
             data.map((ele, i) => (
               <div className="col-4" key={i}>
-                <GarageCard data={ele} />
+                <GarageCard
+                  data={ele}
+                  onChangeGarageDetailRoute={onChangeGarageDetailRoute}
+                />
               </div>
             ))}
         </div>

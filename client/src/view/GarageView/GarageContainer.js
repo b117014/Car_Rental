@@ -4,17 +4,25 @@ import GarageContent from "./GarageContent";
 import { useDispatch } from "react-redux";
 import { garagesGetAction } from "../../_redux/action/garage";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { garageDetailRoute } from "../../route";
 
 const GarageContainer = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const onGaragesGet = async () => {
     await dispatch(garagesGetAction());
+  };
+  const onChangeGarageDetailRoute = (garageId) => {
+    let url = garageDetailRoute(true, garageId);
+    window.open(url, "_blank");
   };
   useEffect(() => {
     onGaragesGet();
   }, []);
-  return <GarageContent />;
+  return (
+    <GarageContent onChangeGarageDetailRoute={onChangeGarageDetailRoute} />
+  );
 };
 
 export default GarageContainer;

@@ -1,9 +1,12 @@
 import React from "react";
 
-const GarageCard = ({ data }) => {
+const GarageCard = ({ data, onChangeGarageDetailRoute }) => {
   return (
     <div className="p-2">
-      <div className="card shadow rounded">
+      <div
+        className="card shadow rounded cursor-pointer"
+        onClick={() => onChangeGarageDetailRoute(data._id)}
+      >
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQryAobxomBx4B7mAvAlsPfND9ALsZ-yPBiPA&usqp=CAU"
           class="card-img-top"
