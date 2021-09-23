@@ -15,11 +15,11 @@ const SideTab = () => {
 
   return (
     <nav className="side-nav shadow " id="side-nav">
-      <div className="container">
+      <div className="">
         <div className="logo text-center my-3">
           <h4>Car Rental</h4>
         </div>
-        <div className="p-4">
+        <div className="p-4 d-flex justify-content-center">
           <div className="">
             <div
               className="my-4 cursor-pointer l"

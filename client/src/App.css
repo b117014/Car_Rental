@@ -27,6 +27,34 @@
 .App-link {
   color: #61dafb;
 }
+.side-nav {
+  height: 100%;
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: inherit;
+  background-color: #1d3557;
+}
+#side-nav .logo {
+  font-family: Peignot;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 50px;
+  letter-spacing: 0.1px;
+  line-height: 20px;
+  color: #ffffff;
+}
+#side-nav h4{
+  font-size: 30px;
+}
+#side-nav p {
+  color: #ffffff;
+  font-size: 20px;
+}
+#side-nav i {
+  color: #52575c;
+}
 
 @keyframes App-logo-spin {
   from {
