@@ -4,7 +4,7 @@ import { getDateMonthFormat } from "../../util/dateFormat";
 const UserDashboardContent = () => {
   const data = [];
   return (
-    <div className="">
+    <div className="" id="dashboard">
       <div className="card shadow rounded ">
         <table className="table">
           <thead className="table-light">
