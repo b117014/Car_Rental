@@ -76,10 +76,12 @@ exports.dropVehicle = async (req, res, next) => {
     const { body } = req;
     if (user) {
       const vehicle = await db.Vehicle.findById(body.vehicleId);
+      const slot = await db.Slot.findById(body.slotId);
+      slot.is_dropped = true;
       vehicle.garage = body.garageId;
       vehicle.is_available = true;
       vehicle.save();
-
+      slot.save();
       res.send(vehicle);
     } else {
       return next({

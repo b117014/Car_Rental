@@ -20,6 +20,10 @@ const slotSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Garage",
     },
+    is_dropped: {
+      type: Boolean,
+      default: false,
+    },
     is_active: {
       type: Boolean,
       default: true,

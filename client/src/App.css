@@ -45,7 +45,7 @@
   line-height: 20px;
   color: #ffffff;
 }
-#side-nav h4{
+#side-nav h4 {
   font-size: 30px;
 }
 #side-nav p {
@@ -56,6 +56,27 @@
   color: #ffffff;
 }
 
+.f-modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  outline: none !important;
+  right: 40px;
+  bottom: 40px;
+  width: auto;
+  background-color: white;
+  border-radius: 20px;
+}
+.f-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  z-index: 4;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
