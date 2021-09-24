@@ -16,9 +16,24 @@ code {
   cursor: pointer !important;
 }
 
-.gap-10{
-  gap:10px !important;
+.gap-10 {
+  gap: 10px !important;
 }
-.gap-20{
-  gap:20px !important;
+.gap-20 {
+  gap: 20px !important;
+}
+
+.book-btn {
+  position: absolute;
+  right: 40px;
+  bottom: 30px;
+}
+.book-btn button {
+  background-color: #1d3557;
+  color: #fff;
+  padding:20px;
+  border-radius: 100px;
+}
+.border-col{
+  border: 3px solid #1d3557
 }

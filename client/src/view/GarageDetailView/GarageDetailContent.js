@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 
-const GarageDetailContent = () => {
+const GarageDetailContent = ({ onVehicleBook, onGetGarageDetail }) => {
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
   const formik = useFormik({
     initialValues: { startDate: new Date(), endDate: new Date() },
     onSubmit: (value) => {
-      console.log(value);
+      onGetGarageDetail(value.startDate, value.endDate);
     },
   });
   const garageDetail = useSelector((state) => state.garage.garageDetail);
@@ -45,7 +46,12 @@ const GarageDetailContent = () => {
                   />
                 </div>
                 <div className="align-self-end">
-                  <button className="btn btn-primary">Search</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={formik.handleSubmit}
+                  >
+                    Search
+                  </button>
                 </div>
               </div>
             </div>
@@ -57,13 +63,36 @@ const GarageDetailContent = () => {
           garageDetail.map((ele, i) => (
             <div className="col-3 my-2" key={i}>
               <div className="">
-                <div className=" shadow">
+                <div
+                  className={`shadow ${
+                    selectedVehicle &&
+                    selectedVehicle._id === ele._id &&
+                    "border-col"
+                  }`}
+                  onClick={() => setSelectedVehicle(ele)}
+                >
                   <img src="/images/car.jpg" alt="" />
                 </div>
               </div>
             </div>
           ))}
       </div>
+      {selectedVehicle && (
+        <div className="book-btn">
+          <button
+            className="btn"
+            onClick={() =>
+              onVehicleBook(
+                selectedVehicle,
+                formik.values.startDate,
+                formik.values.endDate
+              )
+            }
+          >
+            Book
+          </button>
+        </div>
+      )}
     </div>
   );
 };

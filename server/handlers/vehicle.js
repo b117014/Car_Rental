@@ -36,10 +36,16 @@ exports.bookVehicle = async (req, res, next) => {
       const slot = await db.Slot.create(req.body);
       slot.user = user._id;
 
-      const vehicle = await db.Vehicle.findByIdAndUpdate(body.vehicleId, {
-        $push: { reserved: { from: body.from, to: body.to } },
-      });
-      vehicle.garage = garageId;
+      const vehicle = await db.Vehicle.findByIdAndUpdate(
+        body.vehicleId,
+        {
+          $push: { reserved: { from: body.startDate, to: body.endDate } },
+        },
+        {
+          useFindAndModify: false,
+        }
+      );
+      vehicle.garage = body.garageId;
       vehicle.is_available = false;
 
       vehicle.save();

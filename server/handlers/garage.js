@@ -52,8 +52,7 @@ exports.getGarageSlot = async (req, res, next) => {
             reserved: {
               $not: {
                 $elemMatch: {
-                  from: { $lt: query.start_date },
-                  to: { $gt: query.end_date },
+                  $or: [{ from: query.start_date }, { to: query.end_date }],
                 },
               },
             },
