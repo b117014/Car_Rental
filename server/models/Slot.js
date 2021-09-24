@@ -11,10 +11,10 @@ const slotSchema = new mongoose.Schema(
       ref: "Vehicle",
     },
     pick_date: {
-      type: Number,
+      type: String,
     },
     drop_date: {
-      type: Number,
+      type: String,
     },
     garage: {
       type: mongoose.Schema.Types.ObjectId,

@@ -35,7 +35,10 @@ exports.bookVehicle = async (req, res, next) => {
     if (user) {
       const slot = await db.Slot.create(req.body);
       slot.user = user._id;
-
+      slot.vehicle = body.vehicleId;
+      slot.garage = body.garageId;
+      slot.pick_date = body.startDate;
+      slot.drop_date = body.endDate;
       const vehicle = await db.Vehicle.findByIdAndUpdate(
         body.vehicleId,
         {
@@ -64,7 +67,7 @@ exports.bookVehicle = async (req, res, next) => {
   }
 };
 
-exports.returnVehicle = async (req, res, next) => {
+exports.dropVehicle = async (req, res, next) => {
   try {
     /**
      * Return Vehicle
@@ -73,11 +76,34 @@ exports.returnVehicle = async (req, res, next) => {
     const { body } = req;
     if (user) {
       const vehicle = await db.Vehicle.findById(body.vehicleId);
-      vehicle.garage = garageId;
+      vehicle.garage = body.garageId;
       vehicle.is_available = true;
       vehicle.save();
-      slot.save();
-      res.send(slot);
+
+      res.send(vehicle);
+    } else {
+      return next({
+        message: "UnAuthorized",
+        status: 401,
+      });
+    }
+  } catch (err) {
+    return next({
+      message: err.message || "Something went wrong",
+    });
+  }
+};
+exports.getUserBookedSlot = async (req, res, next) => {
+  try {
+    let user = await decodeToken(req);
+    const { body } = req;
+    if (user) {
+      console.log(user);
+      const bookedSlot = await db.Slot.find({ user: user._id })
+        .populate("vehicle")
+        .populate("garage");
+      console.log(bookedSlot);
+      res.send(bookedSlot);
     } else {
       return next({
         message: "UnAuthorized",

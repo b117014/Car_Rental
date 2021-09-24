@@ -1,8 +1,9 @@
 import React from "react";
 import { getDateMonthFormat } from "../../util/dateFormat";
+import { useSelector } from "react-redux";
 
 const UserDashboardContent = () => {
-  const data = [];
+  const data = useSelector((state) => state.userSlot.userSlot);
   return (
     <div className="" id="dashboard">
       <div className="card shadow rounded ">
