@@ -50,3 +50,7 @@ code {
 #dashboard .table > :not(:last-child) > :last-child > * {
   border-bottom-color: blanchedalmond;
 }
+
+/* .font-14 {
+  font: 10px;
+} */

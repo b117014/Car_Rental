@@ -17,13 +17,16 @@ const userVehicleBookingSlotGetAction = () => {
   };
 };
 
-const userVehicleDropAction = (value) => {
+const userVehicleDropAction = (value, callback) => {
   const url = `/vehicle-drop`;
   return (dispatch) => {
     dispatch(reduxPayload(USER_VEHICLE_SLOT_PENDING, true));
     apiClient({ method: "PUT", url: url, data: value })
       .then((res) => {
         dispatch(reduxPayload(USER_VEHICLE_SLOT_PENDING, false));
+        if (callback) {
+          callback();
+        }
       })
       .catch((err) => {
         dispatch(reduxPayload(USER_VEHICLE_SLOT_PENDING, false));

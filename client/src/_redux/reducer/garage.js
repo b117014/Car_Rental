@@ -4,6 +4,7 @@ import {
   GARAGE_DETAIL,
   GARAGE_DETAIL_PENDING,
   GARAGE_ERROR,
+  VEHICLE_BOOK_PENDING,
 } from "../action/garage/type";
 
 const DEFAULT_STATE = {
@@ -12,7 +13,7 @@ const DEFAULT_STATE = {
   isGaragesGetPending: null,
 
   isGarageDetailGetPending: null,
-
+  isVehicleBookPending: null,
   error: null,
 };
 
@@ -43,7 +44,11 @@ export const garageReducer = (
         ...state,
         isGarageDetailGetPending: payload,
       };
-
+    case VEHICLE_BOOK_PENDING:
+      return {
+        ...state,
+        isVehicleBookPending: payload,
+      };
     case GARAGE_ERROR:
       return {
         ...state,

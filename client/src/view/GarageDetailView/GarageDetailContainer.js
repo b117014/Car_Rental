@@ -2,18 +2,24 @@
 import React from "react";
 import GarageDetailContent from "./GarageDetailContent";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   garageDetailGetAction,
   vehicleBookAction,
 } from "../../_redux/action/garage";
 import { useEffect } from "react";
 import { getDateMonthFormat } from "../../util/dateFormat";
+import Spinner from "../../component/Spinner";
 
 const GarageDetailContainer = () => {
   const params = useParams();
   const dispatch = useDispatch();
-
+  const isGarageDetailGetPending = useSelector(
+    (state) => state.garage.isGarageDetailGetPending
+  );
+  const isVehicleBookPending = useSelector(
+    (state) => state.garage.isVehicleBookPending
+  );
   const onGetGarageDetail = async (startDate, endDate) => {
     const query = {
       start_date: getDateMonthFormat(startDate),
@@ -30,18 +36,24 @@ const GarageDetailContainer = () => {
       vehicleId: value._id,
       garageId: params.garageId,
     };
-    await dispatch(vehicleBookAction(body));
+    const onCallBack = () => onGetGarageDetail(startDate, endDate);
+    await dispatch(vehicleBookAction(body, onCallBack));
   };
   useEffect(() => {
     let startDate = new Date();
     let endDate = new Date();
     onGetGarageDetail(startDate, endDate);
   }, []);
+
   return (
-    <GarageDetailContent
-      onVehicleBook={onVehicleBook}
-      onGetGarageDetail={onGetGarageDetail}
-    />
+    <section>
+      <GarageDetailContent
+        onVehicleBook={onVehicleBook}
+        onGetGarageDetail={onGetGarageDetail}
+        garageId={params.garageId}
+      />
+      <Spinner isLoading={isGarageDetailGetPending || isVehicleBookPending} />
+    </section>
   );
 };
 

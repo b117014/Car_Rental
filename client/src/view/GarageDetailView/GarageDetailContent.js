@@ -1,23 +1,44 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
+import { getDateMonthFormat } from "../../util/dateFormat";
+import { useEffect } from "react";
+import { garageGetAction } from "../../_redux/action/garage";
 
-const GarageDetailContent = ({ onVehicleBook, onGetGarageDetail }) => {
+const GarageDetailContent = ({
+  onVehicleBook,
+  onGetGarageDetail,
+  garageId,
+}) => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [garageData, setGarageData] = useState(null);
   const formik = useFormik({
     initialValues: { startDate: new Date(), endDate: new Date() },
     onSubmit: (value) => {
       onGetGarageDetail(value.startDate, value.endDate);
+      setSelectedVehicle(null);
     },
   });
   const garageDetail = useSelector((state) => state.garage.garageDetail);
+
+  const onGetGarage = async () => {
+    try {
+      let res = await garageGetAction(garageId);
+      setGarageData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    onGetGarage();
+  }, []);
   return (
     <div className="p-4">
       <div className="">
         <nav className="nav">
           <div className="row" style={{ display: "contents" }}>
             <div className="col-5">
-              <h4>Garage 1</h4>
+              <h4>{garageData && garageData.name}</h4>
             </div>
             <div className="col-7 d-flex justify-content-end">
               <div className="d-flex gap-10">
@@ -26,7 +47,7 @@ const GarageDetailContent = ({ onVehicleBook, onGetGarageDetail }) => {
                   <input
                     type="date"
                     name="startDate"
-                    value={formik.values.startDate}
+                    value={getDateMonthFormat(formik.values.startDate)}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     required
@@ -38,7 +59,7 @@ const GarageDetailContent = ({ onVehicleBook, onGetGarageDetail }) => {
                   <input
                     type="date"
                     name="endDate"
-                    value={formik.values.endDate}
+                    value={getDateMonthFormat(formik.values.endDate)}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     required
@@ -71,7 +92,17 @@ const GarageDetailContent = ({ onVehicleBook, onGetGarageDetail }) => {
                   }`}
                   onClick={() => setSelectedVehicle(ele)}
                 >
-                  <img src="/images/car.jpg" alt="" />
+                  <div className="">
+                    <img src="/images/car.jpg" alt="" />
+                  </div>
+                  <div className="row px-2">
+                    <div className="col-6">
+                      <small className="font-14">{ele && ele.name}</small>
+                    </div>
+                    <div className="col-6 text-end">
+                      <small className="font-14">{ele && ele.vehicle_number}</small>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

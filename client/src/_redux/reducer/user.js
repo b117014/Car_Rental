@@ -4,6 +4,7 @@ import {
   USER_GET_PENDING,
   USER_LOGIN_PENDING,
   USER_ERROR,
+  USER_REGISTER_PENDING,
 } from "../action/user/type";
 
 const DEFAULT_STATE = {
@@ -12,7 +13,8 @@ const DEFAULT_STATE = {
   isAuthenticated: null,
 
   isUserGetPending: null,
-
+  isLoginPending: null,
+  isRegisterPending: null,
   error: null,
 };
 
@@ -34,16 +36,20 @@ export const userReducer = (
         user: null,
         isAuthenticated: null,
       };
+    case USER_LOGIN_PENDING:
+      return {
+        ...state,
+        isLoginPending: payload,
+      };
+    case USER_REGISTER_PENDING:
+      return {
+        ...state,
+        isRegisterPending: payload,
+      };
     case USER_GET_PENDING:
       return {
         ...state,
         isUserGetPending: payload,
-      };
-
-    case USER_LOGIN_PENDING:
-      return {
-        ...state,
-        isPendingLogin: payload,
       };
 
     case USER_ERROR:

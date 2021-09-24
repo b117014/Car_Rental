@@ -4,13 +4,17 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import VehicleDropModal from "./VehicleDropModal";
 
-const UserDashboardContent = () => {
+const UserDashboardContent = ({ onDropVehicle }) => {
   const data = useSelector((state) => state.userSlot.userSlot);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [isModal, setModal] = useState(false);
 
   const onToggleModal = () => {
     setModal(!isModal);
+  };
+  const onDropUserVehicle = (value, garageId) => {
+    onDropVehicle(value, garageId);
+    onToggleModal();
   };
   return (
     <div className="p-2" id="dashboard">
@@ -49,7 +53,10 @@ const UserDashboardContent = () => {
                     ) : (
                       <button
                         className="btn btn-primary"
-                        onClick={onToggleModal}
+                        onClick={() => {
+                          onToggleModal();
+                          setSelectedVehicle(ele);
+                        }}
                       >
                         Drop
                       </button>
@@ -64,6 +71,7 @@ const UserDashboardContent = () => {
         data={selectedVehicle}
         isModal={isModal}
         onToggleModal={onToggleModal}
+        onDropVehicle={onDropUserVehicle}
       />
     </div>
   );

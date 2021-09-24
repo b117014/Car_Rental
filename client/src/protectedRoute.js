@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import SideTab from "./component/SideTab/SideTab";
 import { routeType } from "./constant/route_constant";
 import GarageView from "./view/GarageView/GarageView";
@@ -8,7 +7,6 @@ import GarageDetailView from "./view/GarageDetailView/GarageDetailView";
 import UserDashboardView from "./view/UserDashboardView/UserDashboardView";
 
 const ProtectedRoute = ({ accessType, type }) => {
-  const history = useHistory();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
   const isUserGetPending = useSelector((state) => state.user.isUserGetPending);
@@ -42,16 +40,7 @@ const ProtectedRoute = ({ accessType, type }) => {
                   </button>
                 </div>
 
-                <div className="">
-                  <div className="">
-                    <img
-                      src="/images/profile.png"
-                      className="rounded"
-                      style={{ height: "35px" }}
-                      alt=""
-                    />
-                  </div>
-                </div>
+               
               </div>
             </nav>
             <div className="">{onRenderComponent(type)}</div>

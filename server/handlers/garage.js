@@ -19,6 +19,24 @@ exports.getGarages = async (req, res, next) => {
     });
   }
 };
+exports.getGarage = async (req, res, next) => {
+  try {
+    let user = await decodeToken(req);
+    if (user) {
+      const garage = await db.Garage.findById(req.params.garageId);
+      res.send(garage);
+    } else {
+      return next({
+        message: "UnAuthorized",
+        status: 401,
+      });
+    }
+  } catch (err) {
+    return next({
+      message: err.message || "Something went wrong",
+    });
+  }
+};
 
 exports.createGarage = async (req, res, next) => {
   try {

@@ -9,7 +9,7 @@ import {
 import { reduxPayload } from "../base";
 import { toastAction } from "../toastAction";
 
-const userRegisterAction = (data) => {
+const userRegisterAction = (data, callback) => {
   const url = "/user/register";
   return (dispatch) => {
     dispatch(reduxPayload(USER_REGISTER_PENDING, true));
@@ -18,6 +18,9 @@ const userRegisterAction = (data) => {
         localStorage.setItem("jwtToken", res.data.token);
         dispatch(reduxPayload(USER_LOGIN, res.data));
         dispatch(reduxPayload(USER_REGISTER_PENDING, false));
+        if (callback) {
+          callback();
+        }
         toastAction.success(`Hi ${res.data.name ? res.data.name : ""}`);
       })
       .catch((err) => {
@@ -27,7 +30,7 @@ const userRegisterAction = (data) => {
   };
 };
 
-const userLoginAction = (data) => {
+const userLoginAction = (data, callback) => {
   const url = "/user/login";
   return (dispatch) => {
     dispatch(reduxPayload(USER_LOGIN_PENDING, true));
@@ -36,6 +39,9 @@ const userLoginAction = (data) => {
         localStorage.setItem("jwtToken", res.data.token);
         dispatch(reduxPayload(USER_LOGIN, res.data));
         dispatch(reduxPayload(USER_LOGIN_PENDING, false));
+        if (callback) {
+          callback();
+        }
         toastAction.success(`Hi ${res.data.name ? res.data.name : ""}`);
       })
       .catch((err) => {

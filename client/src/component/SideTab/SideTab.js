@@ -1,7 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogoutAction } from "../../_redux/action/user";
 
 const SideTab = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const onChangeDashboardRoute = () => {
     history.push("/dashboard");
@@ -9,10 +12,11 @@ const SideTab = () => {
   const onChangeGarageRoute = () => {
     history.push("/garage");
   };
-  const onChangeProfileRoute = () => {
-    history.push("/profile");
-  };
 
+  const onUserLogout = async () => {
+    await dispatch(userLogoutAction());
+    history.push("/login");
+  };
   return (
     <nav className="side-nav shadow " id="side-nav">
       <div className="">
@@ -36,14 +40,7 @@ const SideTab = () => {
               <p className="mx-3 d-inline white-col">Garage</p>
             </div>
 
-            <div
-              className="my-4 cursor-pointers"
-              onClick={onChangeProfileRoute}
-            >
-              <i class="fa fa-user d-inline white-col" aria-hidden="true"></i>
-              <p className="mx-3 d-inline white-col">Profile</p>
-            </div>
-            <div className="my-4 cursor-pointers">
+            <div className="my-4 cursor-pointer" onClick={onUserLogout}>
               <i class="fas fa-sign-out white-col"></i>{" "}
               <p className="mx-2 d-inline white-col">Logout</p>
             </div>

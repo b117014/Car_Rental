@@ -75,8 +75,13 @@ exports.dropVehicle = async (req, res, next) => {
     let user = await decodeToken(req);
     const { body } = req;
     if (user) {
-      const vehicle = await db.Vehicle.findById(body.vehicleId);
       const slot = await db.Slot.findById(body.slotId);
+
+      const vehicle = await db.Vehicle.findByIdAndUpdate(body.vehicleId, {
+        garage: body.garageId,
+        is_available: true,
+        $pull: { reserved: { from: slot.pick_date, to: slot.drop_date } },
+      });
       slot.is_dropped = true;
       vehicle.garage = body.garageId;
       vehicle.is_available = true;
