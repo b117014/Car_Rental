@@ -5,6 +5,7 @@ import SideTab from "./component/SideTab/SideTab";
 import { routeType } from "./constant/route_constant";
 import GarageView from "./view/GarageView/GarageView";
 import GarageDetailView from "./view/GarageDetailView/GarageDetailView";
+import UserDashboardView from "./view/UserDashboardView/UserDashboardView";
 
 const ProtectedRoute = ({ accessType, type }) => {
   const history = useHistory();
@@ -18,6 +19,8 @@ const ProtectedRoute = ({ accessType, type }) => {
         return <GarageView />;
       case routeType.GARAGE_VIEW:
         return <GarageDetailView />;
+      case routeType.DASHBOARD_VIEW:
+        return <UserDashboardView />;
       default:
         return <></>;
     }

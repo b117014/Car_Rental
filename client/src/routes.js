@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { userGetAction } from "./_redux/action/user";
 import LoginView from "./view/LoginView/LoginView";
 import RegisterView from "./view/RegisterView/RegisterView";
-import { garagesRoute, garageDetailRoute } from "./route";
+import { garagesRoute, garageDetailRoute, dashboardRoute } from "./route";
 import GarageView from "./view/GarageView/GarageView";
 import GarageDetailView from "./view/GarageDetailView/GarageDetailView";
 import ProtectedRoute from "./protectedRoute";
@@ -42,6 +42,16 @@ const RouterContent = (props) => {
           path={garageDetailRoute(false)}
           component={() => (
             <ProtectedRoute type={routeType.GARAGE_VIEW} accessType="access" />
+          )}
+        />
+        <Route
+          exact
+          path={dashboardRoute()}
+          component={() => (
+            <ProtectedRoute
+              type={routeType.DASHBOARD_VIEW}
+              accessType="access"
+            />
           )}
         />
       </Switch>

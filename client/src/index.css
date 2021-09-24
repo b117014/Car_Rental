@@ -31,9 +31,22 @@ code {
 .book-btn button {
   background-color: #1d3557;
   color: #fff;
-  padding:20px;
+  padding: 20px;
   border-radius: 100px;
 }
-.border-col{
-  border: 3px solid #1d3557
+.border-col {
+  border: 3px solid #1d3557;
+}
+
+#dashboard td {
+  font-size: 0.7rem;
+  color: rgba(82, 87, 92, 1);
+}
+#dashboard th {
+  font-size: 0.9rem;
+  color: rgba(82, 87, 92, 1);
+  font-weight: 550;
+}
+#dashboard .table > :not(:last-child) > :last-child > * {
+  border-bottom-color: blanchedalmond;
 }
