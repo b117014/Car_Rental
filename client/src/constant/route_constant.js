@@ -1,1 +1,5 @@
-export const routeType = {};
+export const routeType = {
+  GARAGE_LIST_VIEW: "GARAGE_LIST_VIEW",
+  GARAGE_VIEW: "GARAGE_VIEW",
+  DASHBOARD_VIEW: "DASHBOARD_VIEW",
+};

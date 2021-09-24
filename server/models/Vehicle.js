@@ -26,6 +26,7 @@ const vehicleSchema = new mongoose.Schema(
     ],
     is_available: {
       type: Boolean,
+      default: true,
     },
   },
   {

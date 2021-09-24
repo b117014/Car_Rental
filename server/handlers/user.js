@@ -28,6 +28,7 @@ exports.UserLogin = async (req, res, next) => {
       if (isMatch) {
         let token = await signToken(user);
         user.token = token;
+        user.save();
         return res.status(200).json(user);
       }
       return next({
